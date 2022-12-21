@@ -6,11 +6,6 @@ canvas.height = window.innerHeight
 
 class Player {
   constructor() {
-    this.position = {
-      x: 200,
-      y: 200
-    }
-
     this.velocity = {
       x: 0,
       y: 0
@@ -22,6 +17,10 @@ class Player {
       this.image = image
       this.width = image.width * 0.35
       this.height = image.height * 0.35
+      this.position = {
+        x: canvas.width / 2 - this.width / 2,
+        y: canvas.height - this.height - 20
+      }
     }
   }
 
