@@ -101,8 +101,14 @@ function animate() {
   c.fillStyle = 'black'
   c.fillRect(0, 0, canvas.width, canvas.height)
   player.update()
-  projectiles.forEach(projectile => {
-    projectile.update()
+  projectiles.forEach((projectile, i) => {
+    if (projectile.position.y + projectile.radius <= 0) {
+      setTimeout(() => {
+        projectiles.splice(i, 1)
+      }, 0)
+    } else {
+      projectile.update()
+    }
   })
 
   if (keys.a.pressed && player.position.x >= 0) {
@@ -128,6 +134,18 @@ addEventListener('keydown', ({key}) => {
       keys.d.pressed = true
       break
     case ' ':
+      projectiles.push(
+        new Projectile({
+          position: {
+            x: player.position.x + player.width / 2,
+            y: player.position.y
+          },
+          velocity: {
+            x: 0,
+            y: -10
+          }
+        })
+      )
       break
   }
 })
