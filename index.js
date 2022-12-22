@@ -235,6 +235,14 @@ function animate() {
     } else {
       invaderProjectile.update()
     }
+
+    if (
+      invaderProjectile.position.y + invaderProjectile.height >= player.position.y && 
+      invaderProjectile.position.x + invaderProjectile.width >= player.position.x && 
+      invaderProjectile.position.x <= player.position.x + player.width
+    ) {
+      console.log('you lose')
+    }
   })
 
   projectiles.forEach((projectile, i) => {
