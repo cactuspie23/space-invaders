@@ -299,6 +299,9 @@ function animate() {
       invaderProjectile.position.x + invaderProjectile.width >= player.position.x && 
       invaderProjectile.position.x <= player.position.x + player.width
     ) {
+      setTimeout(() => {
+        invaderProjectiles.splice(i, 1)
+      }, 0)
       createParticles({
         object: player,
         color: 'white'
