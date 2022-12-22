@@ -299,7 +299,10 @@ function animate() {
       invaderProjectile.position.x + invaderProjectile.width >= player.position.x && 
       invaderProjectile.position.x <= player.position.x + player.width
     ) {
-      console.log('you lose')
+      createParticles({
+        object: player,
+        color: 'white'
+      })
     }
   })
 
@@ -334,7 +337,9 @@ function animate() {
             const projectileFound = projectiles.find(projectile2 => projectile2 === projectile)
             
             if (invaderFound && projectileFound) {
-              createParticles()              
+              createParticles({
+                object: invader
+              })              
               grid.invaders.splice(i, 1)
               projectiles.splice(j, 1)
 
