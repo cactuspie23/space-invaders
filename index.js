@@ -250,6 +250,25 @@ const keys = {
 let frames = 0
 let randomInterval = Math.floor(Math.random() * 500 + 500)
 
+function createParticles({object, color}) {
+  for (let i = 0; i < 15; i++) {
+    particles.push(
+      new Particle({
+        position: {
+          x: object.position.x + object.width / 2,
+          y: object.position.y + object.height / 2
+        },
+        velocity: {
+          x: (Math.random() - 0.5) * 2,
+          y: (Math.random() - 0.5) * 2
+        },
+        radius: Math.random() * 3,
+        color: color || '#8000ff'
+      })
+    )
+  }
+}
+
 function animate() {
   requestAnimationFrame(animate)
   c.fillStyle = 'black'
@@ -315,23 +334,7 @@ function animate() {
             const projectileFound = projectiles.find(projectile2 => projectile2 === projectile)
             
             if (invaderFound && projectileFound) {
-              for (let i = 0; i < 15; i++) {
-                particles.push(
-                  new Particle({
-                    position: {
-                      x: invader.position.x + invader.width / 2,
-                      y: invader.position.y + invader.height / 2
-                    },
-                    velocity: {
-                      x: (Math.random() - 0.5) * 2,
-                      y: (Math.random() - 0.5) * 2
-                    },
-                    radius: Math.random() * 3,
-                    color: '#8000ff'
-                  })
-                )
-              }
-              
+              createParticles()              
               grid.invaders.splice(i, 1)
               projectiles.splice(j, 1)
 
